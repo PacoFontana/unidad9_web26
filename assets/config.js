@@ -4,7 +4,7 @@
    Los demás enlaces siguen como marcadores hasta que
    agregues tus URLs reales.
    ====================================================== */
-const U9_LINKS = {
+window.U9_LINKS = window.U9_LINKS || {
   authorization: "https://docs.google.com/forms/d/e/1FAIpQLSfE-r8kV7598Z36mbnCHuvw2dhHSu4RDiRVFSoa93NsAlUxuw/viewform",
   discordChernarus: "https://discord.gg/BvrCD3TpSm",
   discordLivonia: "https://discord.gg/KdGvQdjzW8",

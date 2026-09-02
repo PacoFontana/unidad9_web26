@@ -14,3 +14,14 @@ IMPORTANTE
 - Los beneficios mensuales tienen una duración de 31 días.
 - El VIP Premium cuesta US$ 5/mes, se paga con dinero real y aplica a Chernarus y Livonia.
 - La cantidad exacta de RECONS ganada por tiempo online no se muestra numéricamente porque no fue especificada en los datos entregados; el sitio indica el sistema de cada 5 minutos y que AFK está permitido.
+
+
+IMAGEN DE RECONS
+- La tienda usa assets/recons.png como imagen de los cuatro paquetes.
+- Puedes reemplazar ese archivo por tu propia imagen manteniendo exactamente el nombre recons.png.
+- Se recomienda una imagen PNG con fondo transparente o una imagen horizontal; el sitio la adapta automáticamente.
+
+ENLACES
+- Todos los botones de pago leen sus destinos desde assets/config.js.
+- No cambies los nombres de las claves (paypal1, mercadopago1, binance1, etc.).
+- Reemplaza únicamente las URLs TU-PAGO-... por tus enlaces reales.

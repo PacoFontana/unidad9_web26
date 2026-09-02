@@ -1,13 +1,25 @@
 (function () {
   const links = window.U9_LINKS || {};
+
+  // Asigna los enlaces definidos en config.js a cualquier elemento data-link.
+  // Si el destino es válido, se abre en una pestaña nueva.
+
   document.querySelectorAll('[data-link]').forEach((el) => {
     const key = el.getAttribute('data-link');
-    const url = links[key];
-    if (!url) return;
+    const url = typeof links[key] === 'string' ? links[key].trim() : '';
+    if (!url || url === '#') return;
+
+    // El href queda escrito directamente desde config.js.
     el.setAttribute('href', url);
+
+    // Los enlaces externos se abren en una pestaña nueva.
     if (/^https?:\/\//i.test(url)) {
       el.setAttribute('target', '_blank');
       el.setAttribute('rel', 'noopener noreferrer');
+      el.addEventListener('click', (event) => {
+        event.preventDefault();
+        window.open(url, '_blank', 'noopener,noreferrer');
+      });
     }
   });
 
