@@ -25,10 +25,12 @@
   });
 
   const toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', () => {
-    toTop.classList.toggle('show', window.scrollY > 500);
-  }, { passive: true });
-  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  if (toTop) {
+    window.addEventListener('scroll', () => {
+      toTop.classList.toggle('show', window.scrollY > 500);
+    }, { passive: true });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -50,3 +52,13 @@
     });
   });
 })();
+
+
+// Acordeones de beneficios (la información completa se muestra al tocar "VER DETALLES").
+document.querySelectorAll('.benefit-more').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.benefit-card');
+    card.classList.toggle('expanded');
+    btn.querySelector('span').textContent = card.classList.contains('expanded') ? '−' : '+';
+  });
+});

@@ -11,6 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+
+<style>
+.benefit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.benefit-card{position:relative;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.015));padding:24px;box-shadow:var(--shadow);overflow:hidden}.benefit-card:hover{border-color:rgba(187,32,42,.45);transform:translateY(-4px)}.benefit-card h3{font-family:Oswald,sans-serif;font-size:30px;margin:12px 0 10px}.benefit-card p{color:var(--muted);line-height:1.7;font-size:14px}.benefit-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:rgba(187,32,42,.13);border:1px solid rgba(187,32,42,.2);font-size:22px;color:#eee}.benefit-tag{display:inline-block;margin-top:16px;padding:6px 9px;border-radius:8px;background:rgba(255,255,255,.04);font-size:10px;font-weight:900;letter-spacing:1px;color:#aaa}.benefit-more{margin-top:12px;border:0;background:transparent;color:#ddd;padding:0;font:800 11px Inter,sans-serif;letter-spacing:1px;cursor:pointer}.benefit-more span{color:var(--red2);font-size:18px;vertical-align:-2px;margin-left:3px}.premium-card{grid-column:1/-1;background:linear-gradient(145deg,rgba(143,24,32,.15),rgba(255,255,255,.025));border-color:rgba(187,32,42,.35)}.premium-badge{position:absolute;right:18px;top:18px;font-size:9px;font-weight:900;letter-spacing:.8px;color:#e9a4a8;border:1px solid rgba(187,32,42,.28);background:rgba(187,32,42,.1);padding:8px 10px;border-radius:999px}.premium-daily{font-family:Oswald,sans-serif;font-size:28px;color:#fff;margin:14px 0}.premium-pay{grid-template-columns:repeat(3,1fr)}.benefit-shop-note{margin-top:18px;padding:17px 18px;border-left:3px solid var(--red2);background:rgba(143,24,32,.08);border-radius:10px;color:#cfcfd3;line-height:1.65;font-size:13px}.benefit-shop-note strong{color:#fff}@media(max-width:700px){.benefit-grid{grid-template-columns:1fr}.premium-card{grid-column:auto}.premium-badge{position:static;display:inline-block;margin-bottom:14px}.premium-pay{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
   <div class="noise"></div>
@@ -24,6 +28,7 @@
       <a href="#como-ingresar">CÓMO INGRESAR</a>
       <a href="#normativas">NORMATIVAS</a>
       <a href="#comunidad">COMUNIDAD</a>
+      <a href="recons.html">RECONS</a>
     </nav>
     <a class="nav-cta" data-link="authorization" href="#como-ingresar">OBTENER AUTORIZACIÓN</a>
   </header>
@@ -80,21 +85,21 @@
         <div class="section-head reveal"><div><div class="eyebrow">02 / ELIGE TU DESTINO</div><h2>TUS DOS SERVIDORES.</h2></div><p>Una autorización. Dos mapas. Una comunidad.</p></div>
         <div class="server-grid">
           <article class="server-card reveal" data-map="chernarus">
-            <div class="server-image chernarus-art"><span>CHERNARUS</span><em>01</em></div>
+            <div class="server-image chernarus-art"><span>SERVIDOR #1</span><em>01</em></div>
             <div class="server-body">
               <div class="server-status"><span class="status-dot"></span> SERVIDOR ACTIVO</div>
               <h3>CHERNARUS</h3>
               <p>El clásico. Costa, bosques, ciudades, instalaciones militares y kilómetros de territorio para explorar, construir y sobrevivir.</p>
-              <div class="server-buttons"><a class="btn btn-small btn-primary" data-link="discordChernarus" href="#">DISCORD</a><a class="btn btn-small btn-ghost" data-link="mapChernarus" href="#">MAPA iSURVIVE</a></div>
+              <div class="server-buttons"><a class="btn btn-small btn-primary" data-link="discordChernarus" href="#">DISCORD</a><a class="btn btn-small btn-ghost" data-link="mapChernarus" href="#">MAPA iZurvive</a></div>
             </div>
           </article>
           <article class="server-card reveal delay-1" data-map="livonia">
-            <div class="server-image livonia-art"><span>LIVONIA</span><em>02</em></div>
+            <div class="server-image livonia-art"><span>SERVIDOR #2</span><em>02</em></div>
             <div class="server-body">
               <div class="server-status"><span class="status-dot"></span> SERVIDOR ACTIVO</div>
               <h3>LIVONIA</h3>
               <p>Un territorio más compacto y salvaje, con bosques densos, ríos, asentamientos y rutas que premian conocer el terreno.</p>
-              <div class="server-buttons"><a class="btn btn-small btn-primary" data-link="discordLivonia" href="#">DISCORD</a><a class="btn btn-small btn-ghost" data-link="mapLivonia" href="#">MAPA iSURVIVE</a></div>
+              <div class="server-buttons"><a class="btn btn-small btn-primary" data-link="discordLivonia" href="#">DISCORD</a><a class="btn btn-small btn-ghost" data-link="mapLivonia" href="#">MAPA iZurvive</a></div>
             </div>
           </article>
         </div>
@@ -134,7 +139,21 @@
     <section class="section-pad economy" id="economia">
       <div class="container economy-card reveal">
         <div class="economy-main"><div class="eyebrow">05 / ECONOMÍA</div><h2>RECONS.</h2><p>La moneda de Unidad 9 para intercambiar, comprar y acceder a beneficios dentro de la comunidad.</p><div class="economy-pills"><span>JUGANDO</span><span>ELIMINACIONES</span><span>EVENTOS</span><span>SORTEOS</span></div></div>
-        <div class="economy-side"><div class="coin">R</div><div><strong>¿CÓMO SE CONSIGUEN?</strong><p>Los RECONS pueden obtenerse jugando y participando en la comunidad. También pueden utilizarse para intercambios entre jugadores y productos o beneficios disponibles en la tienda.</p></div><a class="btn btn-primary" data-link="discordChernarus" href="#">CONSULTAR EN DISCORD →</a></div>
+        <div class="economy-side"><div class="coin">R</div><div><strong>¿CÓMO SE CONSIGUEN?</strong><p>Puedes obtener RECONS jugando, consiguiendo eliminaciones, participando en eventos, comerciando con jugadores, entrando en sorteos y mediante otras actividades de la comunidad.</p></div><a class="btn btn-primary" href="recons.html">VER PAQUETES RECONS →</a></div>
+      </div>
+    </section>
+
+    <section class="section-pad benefits" id="beneficios">
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">06 / BENEFICIOS MENSUALES</div><h2>MEJORA TU EXPERIENCIA.</h2></div><p>Todos los beneficios mensuales duran <strong>31 días</strong> y se solicitan mediante el sistema de soporte del Discord del servidor.</p></div>
+        <div class="benefit-grid">
+          <article class="benefit-card reveal"><span class="benefit-icon">⌂</span><div class="benefit-tag">12.500 RECONS / MES</div><h3>BASE MAPEADA</h3><p>Elige entre distintos modelos de base y colócala donde quieras. Todas mantienen una estética básica y compatible con la filosofía Vanilla: sin muros especiales ni estructuras que rompan la esencia del juego. La principal ventaja está en la ubicación, la posición y la visión que puedes conseguir.</p><button class="benefit-more" type="button">VER DETALLES <span>+</span></button></article>
+          <article class="benefit-card reveal delay-1"><span class="benefit-icon">⚑</span><div class="benefit-tag">12.500 RECONS / MES</div><h3>FUNDAR UN CLAN</h3><p>Crea tu propio clan con roles y canales personalizados, bandera y brazalete de identificación. También puedes participar en la conquista de territorios mediante tu bandera, conseguir RECONS diarios por el dominio y disponer de mejoras compartidas para tu grupo.</p><button class="benefit-more" type="button">VER DETALLES <span>+</span></button></article>
+          <article class="benefit-card reveal delay-2"><span class="benefit-icon">⌁</span><div class="benefit-tag">12.500 RECONS / MES</div><h3>RADAR ANTIRAIDEO</h3><p>Radar con un radio de <strong>150 metros</strong> que envía alertas ante el movimiento de desconocidos. Puede configurarse para un jugador o integrarse directamente con un clan.</p><button class="benefit-more" type="button">VER DETALLES <span>+</span></button></article>
+          <article class="benefit-card reveal"><span class="benefit-icon">★</span><div class="benefit-tag">12.500 RECONS / MES</div><h3>VIP BÁSICO</h3><p>Prioridad en la cola del servidor donde lo adquieras, descuentos en la tienda, sorteos y eventos exclusivos, insignias y otros beneficios para miembros VIP.</p><button class="benefit-more" type="button">VER DETALLES <span>+</span></button></article>
+          <article class="benefit-card premium-card reveal delay-1"><span class="premium-badge">DINERO REAL • AMBOS SERVIDORES</span><span class="benefit-icon">♛</span><div class="benefit-tag">US$ 5 / MES</div><h3>VIP PREMIUM</h3><p>Incluye todo lo del VIP Básico y además <strong>20.000 RECONS</strong> distribuidos durante los 31 días de membresía. El beneficio se aplica tanto en <strong>Chernarus como en Livonia</strong>.</p><div class="premium-daily">≈ 645 RECONS / DÍA</div><div class="pay-title">PAGAR CON</div><div class="pay-grid premium-pay"><a class="pay-btn paypal" data-link="paypalVipPremium" href="#">PayPal</a><a class="pay-btn mp" data-link="mercadopagoVipPremium" href="#">Mercado Pago</a><a class="pay-btn binance" data-link="binanceVipPremium" href="#">Binance</a></div></article>
+        </div>
+        <div class="benefit-shop-note"><strong>¿QUIERES ALGUNO?</strong> Estos beneficios no se compran desde esta página, salvo el VIP Premium. Para solicitar Base Mapeada, Fundar Clan, Radar AntiRaideo o VIP Básico, entra al Discord del servidor deseado y utiliza el canal <strong>Soporte</strong> para abrir el ticket correspondiente.</div>
       </div>
     </section>
 
@@ -162,7 +181,8 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer-inner"><div class="brand"><span class="brand-mark">U9</span><span class="brand-text"><strong>UNIDAD 9</strong><small>DAYZ • PLAYSTATION</small></span></div><div class="footer-links"><a href="#inicio">INICIO</a><a href="#servidores">SERVIDORES</a><a href="#normativas">NORMATIVAS</a><a href="#comunidad">COMUNIDAD</a></div><div class="footer-copy">© 2026 UNIDAD 9 • DAYZ PLAYSTATION</div></div>
+    <div class="container footer-inner"><div class="brand"><span class="brand-mark">U9</span><span class="brand-text"><strong>UNIDAD 9</strong><small>DAYZ • PLAYSTATION</small></span></div><div class="footer-links"><a href="#inicio">INICIO</a><a href="#servidores">SERVIDORES</a><a href="#normativas">NORMATIVAS</a><a href="#comunidad">COMUNIDAD</a>
+      <a href="recons.html">RECONS</a></div><div class="footer-copy">© 2026 UNIDAD 9 • DAYZ PLAYSTATION</div></div>
   </footer>
 
   <button class="floating-top" id="toTop" aria-label="Volver arriba">↑</button>
