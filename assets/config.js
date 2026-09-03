@@ -32,3 +32,11 @@ window.U9_LINKS = window.U9_LINKS || {
   mercadopagoVipPremium: "https://TU-PAGO-MERCADOPAGO-VIP-PREMIUM.com",
   binanceVipPremium: "https://TU-PAGO-BINANCE-VIP-PREMIUM.com"
 };
+
+
+// ===== DAÑO A ESTRUCTURAS — HORARIO ARGENTINA =====
+// Formato 24h: "HH:MM". Se interpreta en America/Argentina/Buenos_Aires.
+window.U9_DAMAGE_SCHEDULE = {
+  disabledStart: "02:30",
+  disabledEnd: "16:00"
+};
