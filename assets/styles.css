@@ -39,3 +39,16 @@
 .damage-note{padding:15px 16px;border-left:3px solid var(--red2);background:rgba(143,24,32,.08);border-radius:10px;color:#cfcfd3;font-size:12px;line-height:1.65}
 .damage-note strong{color:#fff}
 @media(max-width:700px){.damage-panel{padding:19px;border-radius:20px}.damage-main{grid-template-columns:1fr;gap:18px}.damage-countdown{font-size:clamp(52px,15vw,76px)}.damage-times{grid-template-columns:1fr 1fr}.damage-zone{width:100%}}
+
+/* WhatsApp hero — mobile hardening */
+.hero-whatsapp{display:grid !important;visibility:visible !important;}
+.hero-whatsapp-copy{min-width:0;}
+.hero-whatsapp-copy strong,.hero-whatsapp-copy small{overflow-wrap:anywhere;}
+@media(max-width:600px){
+  .hero-whatsapp{display:grid !important;grid-template-columns:40px minmax(0,1fr) 24px !important;align-items:center !important;width:100% !important;min-height:70px !important;margin-top:16px !important;padding:13px !important;border:1px solid rgba(187,32,42,.42) !important;border-radius:14px !important;background:linear-gradient(135deg,rgba(143,24,32,.16),rgba(255,255,255,.035)) !important;box-shadow:0 12px 35px rgba(0,0,0,.22) !important;opacity:1 !important;transform:none !important;overflow:hidden !important;}
+  .hero-whatsapp-icon{display:grid !important;width:40px !important;height:40px !important;place-items:center !important;border-radius:12px !important;background:rgba(187,32,42,.16) !important;color:#d13944 !important;font-size:20px !important;}
+  .hero-whatsapp-copy{display:flex !important;flex-direction:column !important;gap:4px !important;min-width:0 !important;}
+  .hero-whatsapp-copy strong{display:block !important;font-size:9px !important;line-height:1.35 !important;letter-spacing:.055em !important;color:#fff !important;}
+  .hero-whatsapp-copy small{display:block !important;font-size:7px !important;line-height:1.45 !important;color:#8f8f97 !important;letter-spacing:.08em !important;font-weight:800 !important;}
+  .hero-whatsapp-arrow{display:grid !important;place-items:center !important;font-size:20px !important;color:#aaa !important;}
+}
