@@ -66,68 +66,107 @@
   const damageDisabledEnd = document.getElementById('damageDisabledEnd');
 
   function parseMinutes(value) {
-    const m = /^(\d{1,2}):(\d{2})$/.exec(String(value || '').trim());
+    const m = /^(\d{2}):(\d{2})$/.exec(String(value || '').trim());
     if (!m) return null;
-    const h = Number(m[1]), min = Number(m[2]);
+    const h = Number(m[1]);
+    const min = Number(m[2]);
     if (h > 23 || min > 59) return null;
     return h * 60 + min;
   }
 
-  function argNowParts(date) {
-    const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Argentina/Buenos_Aires', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false }).formatToParts(date);
-    const get = (t) => Number(parts.find(p => p.type === t)?.value || 0);
-    return { year:get('year'), month:get('month'), day:get('day'), hour:get('hour') === 24 ? 0 : get('hour'), minute:get('minute'), second:get('second') };
+  function argentinaNowParts(date) {
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Argentina/Buenos_Aires',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+    });
+    const parts = formatter.formatToParts(date);
+    const get = (type) => Number(parts.find((part) => part.type === type)?.value || 0);
+    return {
+      year: get('year'), month: get('month'), day: get('day'),
+      hour: get('hour') === 24 ? 0 : get('hour'), minute: get('minute'), second: get('second')
+    };
   }
 
-  function argentinaTimestamp(p) {
-    return Date.UTC(p.year, p.month - 1, p.day, p.hour + 3, p.minute, p.second);
+  // Argentina uses UTC-3 year-round. This converts a calendar time in Argentina
+  // into the corresponding UTC timestamp without depending on the visitor's timezone.
+  function argentinaTimestamp(year, month, day, minutes) {
+    const hour = Math.floor(minutes / 60);
+    const minute = minutes % 60;
+    return Date.UTC(year, month - 1, day, hour + 3, minute, 0, 0);
   }
 
   function updateDamageTimer() {
     if (!damageCountdown) return;
+
     const start = parseMinutes(damageConfig.disabledStart);
     const end = parseMinutes(damageConfig.disabledEnd);
     if (start === null || end === null || start === end) {
       damageCountdown.textContent = '--:--:--';
-      damageDescription.textContent = 'Configura disabledStart y disabledEnd en assets/config.js.';
+      if (damageDescription) damageDescription.textContent = 'Configura disabledStart y disabledEnd en assets/config.js.';
       return;
     }
-    const now = new Date();
-    const p = argNowParts(now);
-    const nowMin = p.hour * 60 + p.minute + p.second / 60;
-    const overnight = start > end;
-    const disabledNow = overnight ? (nowMin >= start || nowMin < end) : (nowMin >= start && nowMin < end);
 
+    const now = new Date();
+    const p = argentinaNowParts(now);
+    const nowSeconds = (p.hour * 60 + p.minute) * 60 + p.second;
+    const startSeconds = start * 60;
+    const endSeconds = end * 60;
+    const overnight = start > end;
+
+    let disabledNow;
     let target;
-    if (disabledNow) {
-      const targetDay = (!overnight && nowMin < start) ? p.day : p.day + 1;
-      const tp = { ...p, day: targetDay, hour: Math.floor(end / 60), minute: end % 60, second: 0 };
-      if (overnight && nowMin < end) tp.day = p.day;
-      target = argentinaTimestamp(tp);
-      damageIndicator.classList.add('is-disabled');
-      damageIndicator.classList.remove('is-active');
-      damageStatusText.textContent = 'DAÑO DESACTIVADO';
-      damageCountdownLabel.textContent = 'SE ACTIVA EN';
-      damageDescription.textContent = 'El daño a estructuras está desactivado durante este periodo. El raideo sigue permitido según las reglas del servidor.';
+
+    if (!overnight) {
+      disabledNow = nowSeconds >= startSeconds && nowSeconds < endSeconds;
+      if (disabledNow) {
+        target = argentinaTimestamp(p.year, p.month, p.day, end);
+      } else if (nowSeconds < startSeconds) {
+        target = argentinaTimestamp(p.year, p.month, p.day, start);
+      } else {
+        target = argentinaTimestamp(p.year, p.month, p.day + 1, start);
+      }
     } else {
-      const targetDay = (!overnight && nowMin < start) ? p.day : p.day + 1;
-      const tp = { ...p, day: targetDay, hour: Math.floor(start / 60), minute: start % 60, second: 0 };
-      if (overnight && nowMin < start && nowMin >= end) tp.day = p.day;
-      target = argentinaTimestamp(tp);
-      damageIndicator.classList.add('is-active');
-      damageIndicator.classList.remove('is-disabled');
-      damageStatusText.textContent = 'DAÑO ACTIVADO';
-      damageCountdownLabel.textContent = 'SE DESACTIVA EN';
-      damageDescription.textContent = 'El daño a estructuras está activo. El raideo sigue permitido 24/7.';
+      disabledNow = nowSeconds >= startSeconds || nowSeconds < endSeconds;
+      if (disabledNow) {
+        if (nowSeconds >= startSeconds) {
+          target = argentinaTimestamp(p.year, p.month, p.day + 1, end);
+        } else {
+          target = argentinaTimestamp(p.year, p.month, p.day, end);
+        }
+      } else {
+        target = argentinaTimestamp(p.year, p.month, p.day, start);
+      }
     }
 
+    if (damageIndicator && damageStatusText && damageCountdownLabel && damageDescription) {
+      if (disabledNow) {
+        damageIndicator.classList.add('is-disabled');
+        damageIndicator.classList.remove('is-active');
+        damageStatusText.textContent = 'DAÑO DESACTIVADO';
+        damageCountdownLabel.textContent = 'SE ACTIVA EN';
+        damageDescription.textContent = 'El daño a estructuras está desactivado durante este periodo. El raideo sigue permitido según las reglas del servidor.';
+      } else {
+        damageIndicator.classList.add('is-active');
+        damageIndicator.classList.remove('is-disabled');
+        damageStatusText.textContent = 'DAÑO ACTIVADO';
+        damageCountdownLabel.textContent = 'SE DESACTIVA EN';
+        damageDescription.textContent = 'El daño a estructuras está activo. El raideo sigue permitido 24/7.';
+      }
+    }
+
+    if (damageDisabledStart) damageDisabledStart.textContent = damageConfig.disabledStart;
+    if (damageDisabledEnd) damageDisabledEnd.textContent = damageConfig.disabledEnd;
+
     let diff = Math.max(0, target - now.getTime());
-    const h = Math.floor(diff / 3600000); diff %= 3600000;
-    const m = Math.floor(diff / 60000); diff %= 60000;
-    const sec = Math.floor(diff / 1000);
-    damageCountdown.textContent = [h,m,sec].map(v => String(v).padStart(2,'0')).join(':');
-    damageDisabledStart.textContent = damageConfig.disabledStart;
-    damageDisabledEnd.textContent = damageConfig.disabledEnd;
+    const hours = Math.floor(diff / 3600000);
+    diff %= 3600000;
+    const minutes = Math.floor(diff / 60000);
+    diff %= 60000;
+    const seconds = Math.floor(diff / 1000);
+    damageCountdown.textContent = [hours, minutes, seconds]
+      .map((v) => String(v).padStart(2, '0'))
+      .join(':');
   }
 
   updateDamageTimer();

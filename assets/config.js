@@ -10,7 +10,6 @@ window.U9_LINKS = window.U9_LINKS || {
   discordLivonia: "https://discord.gg/KdGvQdjzW8",
   mapChernarus: "https://www.izurvive.com/invite/20Akl21K2gIzznHm-JPhUg",
   mapLivonia: "https://www.izurvive.com/invite/20Akl21K2gIzznHm-JPhUg",
-  whatsapp: "https://chat.whatsapp.com/CWbAfb86ciRBUOhvVOSoPU?s=cl&p=a&mlu=0",
   tiktok: "https://www.tiktok.com/@lapaconeta?_r=1&_t=ZS-97eb11w6ooW",
 
   // ===== RECONS — ENLACES DE PAGO =====
