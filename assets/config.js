@@ -51,6 +51,6 @@ window.U9_LINKS = window.U9_LINKS || {
 // ===== DAÑO A ESTRUCTURAS — HORARIO ARGENTINA =====
 // Formato 24h: "HH:MM". Se interpreta en America/Argentina/Buenos_Aires.
 window.U9_DAMAGE_SCHEDULE = {
-  disabledStart: "02:00",
+  disabledStart: "00:00",
   disabledEnd: "18:00"
 };
